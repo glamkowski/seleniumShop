@@ -27,6 +27,9 @@ public class AccountPage extends BaseTest {
     @FindBy(css = "button[name='register']")
     WebElement regBtn;
 
+    @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
+    WebElement errorText;
+
     public AccountPage setRegEmailInput(String email) {
         regEmailInput.sendKeys(email);
         return this;
@@ -41,11 +44,24 @@ public class AccountPage extends BaseTest {
         regBtn.click();
     }
 
-    public LoggedUserPage registerNewUser() {
+    public LoggedUserPage registerNewUserValidData() {
         Random random = new Random();
-        regEmailInput.sendKeys(random.nextInt(1000) + "0012D@llli.pl");
-        regPasswordInput.sendKeys(random.nextInt(1000) + "0012D@llli.pl");
-        regBtn.click();
+        setRegisterForm("EMAIL" + random.nextInt(100) + "@ds.pl", "00123@DDY");
         return new LoggedUserPage(driver);
+    }
+
+    public AccountPage registerNewUserInvalidData(String email) {
+        setRegisterForm(email, "9384@@Dw");
+        return this;
+    }
+
+    private void setRegisterForm(String email, String password) {
+        regEmailInput.sendKeys(email);
+        regPasswordInput.sendKeys(password);
+        regBtn.click();
+    }
+
+    public String getErrorText() {
+        return errorText.getText().trim();
     }
 }

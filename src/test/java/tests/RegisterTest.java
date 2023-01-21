@@ -14,7 +14,7 @@ public class RegisterTest extends BaseTest {
     @Test
     public void shouldCreateNewUser() {
         homePage.goToMyAccount()
-                .registerNewUser();
+                .registerNewUserValidData();
 
         Assert.assertTrue(loggedUserPage.getLoggedTitle().contains("Hello"));
     }
@@ -22,11 +22,9 @@ public class RegisterTest extends BaseTest {
     @Test
     public void shouldNotCreateNewUser() {
         homePage.goToMyAccount()
-                .setRegEmailInput("test@test.com")
-                .setRegPasswordInput("123123Dsxas@@")
-                .clickRegBtn();
+                .registerNewUserInvalidData("test@test.com");
 
-        Assert.assertFalse(loggedUserPage.getErrorText().equals("An account is already registered with your email address. Please log in."));
+        Assert.assertFalse(accountPage.getErrorText().equals("An account is already registered with your email address. Please log in."));
 
     }
 

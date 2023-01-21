@@ -14,16 +14,8 @@ public class LoggedUserPage {
     @FindBy(xpath = "//div[@class='woocommerce-MyAccount-content']//p[1]")
     WebElement loggedText;
 
-    @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
-    WebElement errorText;
-
     public String getLoggedTitle () {
         return loggedText.getText();
     }
-
-    public String getErrorText () {
-        return errorText.getText().trim();
-    }
-
 
 }
