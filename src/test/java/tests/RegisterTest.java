@@ -12,9 +12,22 @@ import pages.HomePage;
 public class RegisterTest extends BaseTest {
 
     @Test
-    public void test() {
-        homePage.goToMyAccount().registerNewUser();
-        Assert.assertTrue(loggedUserPage.getLoggedTitle().equals("My account"));
+    public void shouldCreateNewUser() {
+        homePage.goToMyAccount()
+                .registerNewUser();
+
+        Assert.assertTrue(loggedUserPage.getLoggedTitle().contains("Hello"));
+    }
+
+    @Test
+    public void shouldNotCreateNewUser() {
+        homePage.goToMyAccount()
+                .setRegEmailInput("test@test.com")
+                .setRegPasswordInput("123123Dsxas@@")
+                .clickRegBtn();
+
+        Assert.assertFalse(loggedUserPage.getErrorText().equals("An account is already registered with your email address. Please log in."));
+
     }
 
     @Test

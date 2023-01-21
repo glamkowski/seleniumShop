@@ -11,11 +11,18 @@ public class LoggedUserPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//h1[@class='entry-title']")
-    WebElement loggedTitle;
+    @FindBy(xpath = "//div[@class='woocommerce-MyAccount-content']//p[1]")
+    WebElement loggedText;
+
+    @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
+    WebElement errorText;
 
     public String getLoggedTitle () {
-        return loggedTitle.getText();
+        return loggedText.getText();
+    }
+
+    public String getErrorText () {
+        return errorText.getText().trim();
     }
 
 
