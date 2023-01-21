@@ -15,6 +15,7 @@ public class DriverFactory {
 
             if (System.getProperty("os.name").contains("Mac")) {
                 chromeOptions.setBinary("/Applications/Google Chrome/Google Chrome.app/Contents/MacOS/Google Chrome");
+                chromeOptions.setAcceptInsecureCerts(true);
             }
             return new ChromeDriver(chromeOptions);
         } else {
