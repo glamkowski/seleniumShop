@@ -8,18 +8,12 @@ import java.util.Properties;
 
 public class PropertiesLoader {
 
-    public static String getProperty (String property) throws IOException {
-
+    public static String getProperty(String property) throws IOException {
         File file = new File("src/test/resources/config.properties");
-
         FileReader fileReader = new FileReader(file);
-
         Properties properties = new Properties();
-
         properties.load(fileReader);
-
         return properties.getProperty(property);
-
     }
 
 }

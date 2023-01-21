@@ -14,17 +14,18 @@ public class HomePage extends BaseTest {
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
-    @FindBy(xpath = "//span[@class='nav__title' and text()='Cart']")
-    List<WebElement> navBtns;
+    @FindBy (xpath = "//span[text()='My account']")
+    List<WebElement> myAccountNavLink;
 
-    public HomePage clickNavBtn(String textInsideNavBtn) {
-        navBtns.stream()
+    public AccountPage goToMyAccount() {
+        myAccountNavLink.stream()
                 .filter(x -> x.isDisplayed())
-                .filter(x -> x.getText().equals(textInsideNavBtn))
-                .findFirst().ifPresent(x -> x.click());
-        return this;
+                .findFirst()
+                .ifPresent(x -> x.click());
+        return new AccountPage(driver);
     }
 
 
