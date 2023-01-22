@@ -44,4 +44,14 @@ public class BaseTest {
         driver.quit();
     }
 
+    public void sendKeys(String text, WebElement element) {
+        System.out.println("Sending text: " + text + " to: " + element.getTagName());
+        element.sendKeys(text);
+    }
+
+    public void click (WebElement element) {
+        System.out.println("Clicking on the: " + element.getTagName());
+        element.click();
+    }
+
 }
