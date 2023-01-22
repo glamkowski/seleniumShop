@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.AccountPage;
 import pages.HomePage;
 import pages.LoggedUserPage;
+import pages.ProductListPage;
 import utils.DriverFactory;
 import utils.PropertiesLoader;
 
@@ -17,8 +18,8 @@ public class BaseTest {
     public WebDriver driver;
     public HomePage homePage;
     public AccountPage accountPage;
-
     public LoggedUserPage loggedUserPage;
+    public ProductListPage productListPage;
 
     @BeforeMethod
     public void setup() throws IOException {
@@ -30,6 +31,7 @@ public class BaseTest {
         homePage = new HomePage(driver);
         accountPage = new AccountPage(driver);
         loggedUserPage = new LoggedUserPage(driver);
+        productListPage = new ProductListPage(driver);
 
 
     }
