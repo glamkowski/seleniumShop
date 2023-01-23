@@ -47,9 +47,6 @@ public class AddressPage extends BaseTest {
     @FindBy (id = "billing_email")
     WebElement billingEmail;
 
-    @FindBy (id = "billing_state")
-    WebElement billingState;
-
     @FindBy (id = "place_order")
     WebElement placeOrderBtn;
 
@@ -70,7 +67,6 @@ public class AddressPage extends BaseTest {
     }
 
     public Orders clickPlaceOrderBtn () {
-
         try {
             WebElement date = driver.findElement(By.id("place_order"));
             date.click();

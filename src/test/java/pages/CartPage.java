@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import tests.BaseTest;
+import utils.SeleniumHelper;
 
 public class CartPage extends BaseTest {
     public CartPage(WebDriver driver) {
@@ -23,6 +24,7 @@ public class CartPage extends BaseTest {
     }
 
     public AddressPage clickCheckoutBtn() {
+        SeleniumHelper.waitForClickableElement(driver, checkoutBtn);
         checkoutBtn.click();
         return new AddressPage(driver);
     }
