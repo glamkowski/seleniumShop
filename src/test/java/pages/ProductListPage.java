@@ -17,13 +17,13 @@ public class ProductListPage extends BaseTest {
         this.driver = driver;
     }
 
-    @FindBy (css = ".woocommerce-products-header > h1")
-    WebElement pageTitle;
+    @FindBy(css = ".woocommerce-products-header > h1")
+    WebElement h1Title;
 
-    @FindBy (css = ".woocommerce-loop-product__title")
+    @FindBy(css = ".woocommerce-loop-product__title")
     List<WebElement> productsFound;
 
-    public ProductPage selectRandomProduct () {
+    public ProductPage selectRandomProduct() {
         Random random = new Random();
         Integer numberOfProducts = getQuantityProducts();
         productsFound.get(random.nextInt(numberOfProducts)).click();
@@ -34,12 +34,13 @@ public class ProductListPage extends BaseTest {
         return productsFound.stream().map(x -> x.getText()).collect(Collectors.toList());
     }
 
-    public Integer getQuantityProducts () {
+    public Integer getQuantityProducts() {
         return productsFound.size();
     }
 
-    public String getPageTitle() {
-        return pageTitle.getText();
+    public String getH1Title() {
+        return h1Title.getText();
     }
+
 
 }

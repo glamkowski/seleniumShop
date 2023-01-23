@@ -18,9 +18,15 @@ public class BaseTest {
     public LoggedUserPage loggedUserPage;
     public ProductListPage productListPage;
     public ProductPage productPage;
+    public CartPage cartPage;
+    public AddressPage addressPage;
+    public static String email;
+    public static String password;
 
     @BeforeMethod
     public void setup() throws IOException {
+        email = PropertiesLoader.getProperty("test.data.email");
+        password = PropertiesLoader.getProperty("test.data.password");
 
         driver = DriverFactory.getWebDriver(PropertiesLoader.getProperty("browser.name"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
@@ -31,7 +37,8 @@ public class BaseTest {
         loggedUserPage = new LoggedUserPage(driver);
         productListPage = new ProductListPage(driver);
         productPage = new ProductPage(driver);
-
+        cartPage = new CartPage(driver);
+        addressPage = new AddressPage(driver);
     }
 
     @AfterMethod
@@ -49,7 +56,7 @@ public class BaseTest {
         element.sendKeys(text);
     }
 
-    public void click (WebElement element) {
+    public void click(WebElement element) {
         System.out.println("Clicking on the: " + element.getTagName());
         element.click();
     }

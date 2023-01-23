@@ -1,6 +1,5 @@
 package pages;
 
-import org.bouncycastle.crypto.agreement.srp.SRP6Client;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +16,7 @@ public class AccountPage extends BaseTest {
     }
 
     @FindBy(xpath = "//h1[@class='entry-title']")
-    WebElement pageTitle;
+    WebElement h1PageTitle;
 
     @FindBy(xpath = "//input[@id='reg_email']")
     WebElement regEmailInput;
@@ -31,16 +30,16 @@ public class AccountPage extends BaseTest {
     @FindBy(xpath = "//ul[@class='woocommerce-error']/li")
     WebElement errorText;
 
-    @FindBy (xpath = "//input[@id='username']")
+    @FindBy(xpath = "//input[@id='username']")
     WebElement logUsernameInput;
 
-    @FindBy (css = "input[id='password']")
+    @FindBy(css = "input[id='password']")
     WebElement logPasswordInput;
 
     @FindBy(xpath = "//button[text()='Log in']")
     WebElement loginBtn;
 
-    public LoggedUserPage logIn (String email, String password) {
+    public LoggedUserPage logIn(String email, String password) {
         sendKeys(email, logUsernameInput);
         sendKeys(password, logPasswordInput);
         click(loginBtn);
@@ -62,11 +61,6 @@ public class AccountPage extends BaseTest {
         return new LoggedUserPage(driver);
     }
 
-    public AccountPage clickRegBtnForInvalidData() {
-        click(regBtn);
-        return this;
-    }
-
     public LoggedUserPage registerNewRandomUser() {
         Random random = new Random();
         String email = random.nextInt(100) + "@oskar.inq";
@@ -83,5 +77,10 @@ public class AccountPage extends BaseTest {
 
     public String getErrorTextAfterLogIn() {
         return errorText.getText().trim();
+    }
+
+    public AccountPage clickRegBtnForInvalidData() {
+        click(regBtn);
+        return this;
     }
 }

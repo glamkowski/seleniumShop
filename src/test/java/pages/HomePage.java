@@ -15,14 +15,14 @@ public class HomePage extends BaseTest {
         this.driver = driver;
     }
 
-    @FindBy (xpath = "//span[text()='My account']")
-    List<WebElement> myAccountNavLink;
+    @FindBy(xpath = "//span[text()='My account']")
+    List<WebElement> myAccountLink;
 
-    @FindBy (xpath = "//a/span[@class='nav__title' and text()='Shop']")
-    List<WebElement> shopNavLink;
+    @FindBy(xpath = "//a/span[@class='nav__title' and text()='Shop']")
+    List<WebElement> shopLink;
 
-    public ProductListPage goToShop () {
-        shopNavLink.stream()
+    public ProductListPage goToShop() {
+        shopLink.stream()
                 .filter(x -> x.isDisplayed())
                 .findFirst()
                 .ifPresent(x -> x.click());
@@ -30,12 +30,11 @@ public class HomePage extends BaseTest {
     }
 
     public AccountPage goToMyAccount() {
-        myAccountNavLink.stream()
+        myAccountLink.stream()
                 .filter(x -> x.isDisplayed())
                 .findFirst()
                 .ifPresent(x -> x.click());
         return new AccountPage(driver);
     }
-
 
 }
