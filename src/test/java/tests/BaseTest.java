@@ -4,10 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.AccountPage;
-import pages.HomePage;
-import pages.LoggedUserPage;
-import pages.ProductListPage;
+import pages.*;
 import utils.DriverFactory;
 import utils.PropertiesLoader;
 
@@ -20,6 +17,7 @@ public class BaseTest {
     public AccountPage accountPage;
     public LoggedUserPage loggedUserPage;
     public ProductListPage productListPage;
+    public ProductPage productPage;
 
     @BeforeMethod
     public void setup() throws IOException {
@@ -32,7 +30,7 @@ public class BaseTest {
         accountPage = new AccountPage(driver);
         loggedUserPage = new LoggedUserPage(driver);
         productListPage = new ProductListPage(driver);
-
+        productPage = new ProductPage(driver);
 
     }
 
