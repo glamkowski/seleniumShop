@@ -15,7 +15,7 @@ public class CartPage extends BaseTest {
     @FindBy(css = ".summary > h1")
     WebElement h1CartTitle;
 
-    @FindBy(xpath = "//a[contains(text(), 'checkout')]")
+    @FindBy(className = "checkout-button")
     WebElement checkoutBtn;
 
     public String getH1CartTitle() {
@@ -23,7 +23,7 @@ public class CartPage extends BaseTest {
     }
 
     public AddressPage clickCheckoutBtn() {
-        click(checkoutBtn);
+        checkoutBtn.click();
         return new AddressPage(driver);
     }
 

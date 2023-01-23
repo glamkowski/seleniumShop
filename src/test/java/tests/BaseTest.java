@@ -20,6 +20,7 @@ public class BaseTest {
     public ProductPage productPage;
     public CartPage cartPage;
     public AddressPage addressPage;
+    public Orders orders;
     public static String email;
     public static String password;
 
@@ -30,6 +31,7 @@ public class BaseTest {
 
         driver = DriverFactory.getWebDriver(PropertiesLoader.getProperty("browser.name"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
+        driver.manage().window().maximize();
         driver.get(PropertiesLoader.getProperty("url"));
 
         homePage = new HomePage(driver);
@@ -39,15 +41,11 @@ public class BaseTest {
         productPage = new ProductPage(driver);
         cartPage = new CartPage(driver);
         addressPage = new AddressPage(driver);
+        orders = new Orders(driver);
     }
 
     @AfterMethod
     public void cleaup() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         driver.quit();
     }
 

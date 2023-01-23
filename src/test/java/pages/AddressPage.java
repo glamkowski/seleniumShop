@@ -1,10 +1,18 @@
 package pages;
 
+import models.User;
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import tests.BaseTest;
+
+import java.time.Duration;
 
 public class AddressPage extends BaseTest {
     public AddressPage(WebDriver driver) {
@@ -12,12 +20,67 @@ public class AddressPage extends BaseTest {
         this.driver = driver;
     }
 
-    @FindBy (xpath = "//button[text()='Place order']")
+    @FindBy (id = "billing_first_name")
+    WebElement firstName;
+
+    @FindBy (id = "billing_last_name")
+    WebElement lastName;
+
+    @FindBy (id = "billing_company")
+    WebElement companyName;
+
+    @FindBy (css = "select#billing_country")
+    WebElement selectBillingCountry;
+
+    @FindBy (id = "billing_address_1")
+    WebElement billingAddress1;
+
+    @FindBy (id = "billing_postcode")
+    WebElement billingPostcode;
+
+    @FindBy (id = "billing_city")
+    WebElement billingCity;
+
+    @FindBy (id = "billing_phone")
+    WebElement billingPhone;
+
+    @FindBy (id = "billing_email")
+    WebElement billingEmail;
+
+    @FindBy (id = "billing_state")
+    WebElement billingState;
+
+    @FindBy (id = "place_order")
     WebElement placeOrderBtn;
 
-    public AddressDetailsPage clickPlaceOrderBtn () {
-        click(placeOrderBtn);
-        return new AddressDetailsPage(driver);
+    public AddressPage fillOutForm (User user) {
+        sendKeys(user.getFristName(), firstName);
+        sendKeys(user.getLastName(), lastName);
+        sendKeys(user.getCompanyName(), companyName);
+        sendKeys(user.getBillingAddress1(), billingAddress1);
+        sendKeys("96338", billingPostcode);
+        sendKeys(user.getBillingCity(), billingCity);
+        sendKeys(user.getBillingPhone(), billingPhone);
+        sendKeys(user.getBillingEmail(), billingEmail);
+
+        Select select = new Select(selectBillingCountry);
+        select.selectByVisibleText("Poland");
+
+        return new AddressPage(driver);
+    }
+
+    public Orders clickPlaceOrderBtn () {
+
+        try {
+            WebElement date = driver.findElement(By.id("place_order"));
+            date.click();
+        }
+        catch(StaleElementReferenceException ex)
+        {
+            WebElement date = driver.findElement(By.id("place_order"));
+            date.click();
+        }
+        return new Orders(driver);
     }
 
 }
