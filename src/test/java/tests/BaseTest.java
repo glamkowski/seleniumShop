@@ -19,8 +19,8 @@ public class BaseTest {
     public ProductListPage productListPage;
     public ProductPage productPage;
     public CartPage cartPage;
-    public AddressPage addressPage;
-    public Orders orders;
+    public BillingDetailsPage billingDetailsPage;
+    public OrdersDetailsPage ordersDetailsPage;
     public static String email;
     public static String password;
 
@@ -40,8 +40,8 @@ public class BaseTest {
         productListPage = new ProductListPage(driver);
         productPage = new ProductPage(driver);
         cartPage = new CartPage(driver);
-        addressPage = new AddressPage(driver);
-        orders = new Orders(driver);
+        billingDetailsPage = new BillingDetailsPage(driver);
+        ordersDetailsPage = new OrdersDetailsPage(driver);
     }
 
     @AfterMethod

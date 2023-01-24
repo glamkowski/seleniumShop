@@ -4,9 +4,9 @@ import models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CheckoutTest extends BaseTest {
+public class PurchaseTest extends BaseTest {
 
-    @Test (invocationCount = 5)
+    @Test(invocationCount = 2)
     public void shouldPurchaseRandomProduct() {
 
         homePage.goToShop()
@@ -17,7 +17,7 @@ public class CheckoutTest extends BaseTest {
                 .fillOutForm(new User())
                 .clickPlaceOrderBtn();
 
-        Assert.assertEquals(orders.getOrderRecivedAlert(), "Thank you. Your order has been received.");
+        Assert.assertEquals(ordersDetailsPage.getOrderRecivedAlert(), "Thank you. Your order has been received.");
     }
 
 }

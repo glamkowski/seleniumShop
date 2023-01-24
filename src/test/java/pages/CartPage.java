@@ -23,10 +23,10 @@ public class CartPage extends BaseTest {
         return h1CartTitle.getText();
     }
 
-    public AddressPage clickCheckoutBtn() {
+    public BillingDetailsPage clickCheckoutBtn() {
         SeleniumHelper.waitForClickableElement(driver, checkoutBtn);
         checkoutBtn.click();
-        return new AddressPage(driver);
+        return new BillingDetailsPage(driver);
     }
 
 

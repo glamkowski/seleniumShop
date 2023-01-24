@@ -6,17 +6,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import tests.BaseTest;
 
-public class Orders extends BaseTest {
+public class OrdersDetailsPage extends BaseTest {
 
-    public Orders (WebDriver driver) {
+    public OrdersDetailsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    @FindBy (css = ".woocommerce-order p")
+    @FindBy(css = ".woocommerce-order p")
     WebElement orderRecivedAlert;
 
-    public String getOrderRecivedAlert () {
+    public String getOrderRecivedAlert() {
         return orderRecivedAlert.getText();
     }
 

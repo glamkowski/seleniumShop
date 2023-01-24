@@ -10,13 +10,6 @@ import java.util.List;
 public class ProductsTest extends BaseTest {
 
     @Test
-    public void showProductsList () {
-        homePage.goToShop();
-        Assert.assertTrue(productListPage.getH1Title().equals("Shop"));
-        Assert.assertTrue(productListPage.getQuantityProducts().equals(3));
-    }
-
-    @Test
     public void showRandomProduct () {
         homePage.goToShop()
                 .selectRandomProduct();
@@ -30,8 +23,13 @@ public class ProductsTest extends BaseTest {
                 .findFirst()
                 .isPresent()
         );
+    }
 
-
+    @Test
+    public void showProductsList () {
+        homePage.goToShop();
+        Assert.assertTrue(productListPage.getH1Title().equals("Shop"));
+        Assert.assertTrue(productListPage.getQuantityProducts().equals(3));
     }
 
 }
